@@ -1,3 +1,5 @@
+import React from 'react';
+
 type UserCardProps = {
   name: string,
   country: string,

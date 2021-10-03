@@ -7,9 +7,9 @@ function App() {
   const [users, setUsers] = useState([]);
 
   const fetchData = () => {
-    return fetch("https://randomuser.me/api/?results=50")
+    return fetch("http://localhost:4000/api/")
       .then((response) => response.json())
-      .then((data) => setUsers(data.results));}
+      .then((data) => setUsers(data));}
 
   useEffect(() => {
     fetchData()

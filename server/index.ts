@@ -1,6 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
+app.use(cors({origin: 'http://localhost:8080'}));
+
 const port = process.env.PORT || 4000;
 const mockResponse = [
   {
@@ -20,14 +23,8 @@ const mockResponse = [
   }
 ];
 
-
-app.get('/api', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+app.get('/api', (req: any, res: any) => {
   res.send(mockResponse);
-});
-
-app.get('/', (req, res) => {
- res.status(200).send('Hello World from the server!');
 });
 
 app.listen(port, function () {

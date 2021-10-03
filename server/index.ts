@@ -1,30 +1,29 @@
 const express = require('express');
 const cors = require('cors');
+const request = require('request');
 
 const app = express();
 app.use(cors({origin: 'http://localhost:8080'}));
 
 const port = process.env.PORT || 4000;
-const mockResponse = [
-  {
-    name: 'dallas sallad',
-    country: 'sverige',
-    picture: 'https://randomuser.me/api/portraits/med/women/96.jpg'
-  },
-  {
-    name: 'judas sallad',
-    country: 'sverige',
-    picture: 'https://randomuser.me/api/portraits/med/women/96.jpg'
-  },
-  {
-    name: 'Kalle sallad',
-    country: 'sverige',
-    picture: 'https://randomuser.me/api/portraits/med/women/96.jpg'
-  }
-];
+
+const parseBody = (users: any) => {
+  const parsed_users = users.map((user: any) => {
+    return {
+      name: user.name.first,
+      country :user.location.country,
+      picture: user.picture.medium,
+    }
+  })
+
+  return parsed_users;
+}
 
 app.get('/api', (req: any, res: any) => {
-  res.send(mockResponse);
+  request.get("https://randomuser.me/api/?results=50", (err: any, response: any, body: any) => {
+    const response_users = parseBody(JSON.parse(body).results);
+    res.send(response_users);
+  });
 });
 
 app.listen(port, function () {

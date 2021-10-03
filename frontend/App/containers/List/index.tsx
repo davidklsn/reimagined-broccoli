@@ -1,7 +1,15 @@
 import React from 'react';
 import UserCard from "../../components/UserCard"
 
-function List({ users }: any) {
+type ListProps = {
+  users: Array<{
+    name: string;
+    country: string;
+    picture: string;
+  }>
+}
+
+function List({ users }: ListProps) {
 
   return (
     <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 md:gap-4">

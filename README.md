@@ -1,11 +1,9 @@
 ## Get started
 
+Node version: 16
+
 `yarn install`
 
-Client:
-- Node version: 16
-- Command: `yarn client`
+Client: `yarn client`
 
-Server:
-- Node version: 18
-- Command: `yarn server`
+Server: `yarn server`
